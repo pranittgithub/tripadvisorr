@@ -40,7 +40,8 @@
     "react-spring": "^9.7.5",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "trip-planner": "file:"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",

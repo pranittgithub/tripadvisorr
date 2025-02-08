@@ -21,6 +21,7 @@ function Header({headerRef}) {
     logout();
   };
   const LogIn = () => {
+    console.log(import.meta.env.VITE_DOMAIN_NAME)
     loginWithPopup();
   };
 

@@ -81,6 +81,7 @@ function CreateTrip({createTripPageRef}) {
   };
 
   const generateTrip = async () => {
+    
     if (!isAuthenticated) {
       toast("Sign In to continue", {
         icon: "⚠️",
