@@ -14,10 +14,10 @@ import { db } from "../../../Service/firebase";
 import { LogInContext } from "../../../context/LogInContext/Login";
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [user1, setUser] = useState(null);
   const [err, setErr] = useState(false);
 
-  const { currentUser } = useContext(LogInContext);
+   const {user, isAuthenticated, handleSignOut,handleSignIn } = useContext(LogInContext);
 
   const handleSearch = async () => {
     const q = query(
