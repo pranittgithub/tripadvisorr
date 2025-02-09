@@ -37,13 +37,13 @@ function Header({ headerRef }) {
       <div className=" flex items-center justify-center gap-5">
       {
         isAuthenticated?(
-          <Link
-          to="/chat"
-          className="flex items-center gap-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-        >
-          <MessageCircle className="h-5 w-5" /> Chat
-        </Link>
-        // <>{user.uid}</>
+        //   <Link
+        //   to="/chat"
+        //   className="flex items-center gap-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+        // >
+        //   <MessageCircle className="h-5 w-5" /> Chat
+        // </Link>
+        <>{user.uid}</>
         ):(
           <></> 
         )

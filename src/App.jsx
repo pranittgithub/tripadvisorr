@@ -31,6 +31,14 @@ function App() {
   const footerRef = useRef(null);
   const { locationInfoRef } = useRefContext();
 
+  const ProtectedRoute = ({ children }) => {
+    if (!user) {
+      return <Navigate to="/" />;
+    }
+
+    return children
+  };
+
   useEffect(() => {
     if (!loggedIn && isAuthenticated) {
       setLoggedIn(true);
@@ -109,7 +117,7 @@ function App() {
             />
             <Route
               path="/chat"
-              element={<Chathome/>}
+              element={<ProtectedRoute><Chathome /></ProtectedRoute>}
             />
             <Route
               path="/my-trips/:tripId"
@@ -121,7 +129,7 @@ function App() {
             />
           </Routes>
         </div>
-        <Footer footerRef={footerRef} />
+        {/* <Footer footerRef={footerRef} /> */}
       </div>
     </>
   );

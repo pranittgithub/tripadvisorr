@@ -7,6 +7,7 @@ module.exports = {
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
   ],
+  exclude:['.chat/**/*'],
   prefix: "",
   theme: {
   	container: {
