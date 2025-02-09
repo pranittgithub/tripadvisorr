@@ -1,20 +1,20 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
-import { LogInContext } from "../../../context/LogInContext/Login";
+import { LogInContext } from '../../../context/LogInContext/Login';
 import { ChatContext } from "../../../Context/ChatContext";
 import { db } from "../../../Service/firebase";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
-  const { currentUser } = useContext(LogInContext);
+  const {user, isAuthenticated, handleSignOut,handleSignIn } = useContext(LogInContext);
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
-    console.log("hello"+currentUser.uid);
+    console.log("hello"+user.uid);
     const getChats = () => {
-      if(currentUser?.uid){
-        const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+      if(user?.uid){
+        const unsub = onSnapshot(doc(db, "userChats", user.uid), (doc) => {
           setChats(doc.data());
         });
         return () => {
@@ -26,10 +26,10 @@ const Chats = () => {
 
       
     };
-    if(currentUser){
+    if(user){
       getChats();
     }
-  }, [currentUser.uid,currentUser?.uid]);
+  }, [user.uid,user?.uid]);
 
   const handleSelect = (u) => {
     dispatch({ type: "CHANGE_USER", payload: u });
@@ -37,7 +37,7 @@ const Chats = () => {
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
+      {chats && Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div
           className="userChat"
           key={chat[0]}
