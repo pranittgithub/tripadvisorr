@@ -35,24 +35,23 @@ function CreateTrip({createTripPageRef}) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { user, loginWithPopup, isAuthenticated } = useContext(LogInContext);
+  const { user, handleSignIn, isAuthenticated } = useContext(LogInContext);
 
   const handleInputChange = (name, value) => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const SignIn = async () => {
-    loginWithPopup();
-  };
+  // const SignIn = async () => {
+  //   loginWithPopup();
+  // };
 
   const SaveUser = async () => {
-    const User = JSON.parse(localStorage.getItem("User"));
-    const id = User?.email;
+    const id = user?.email;
     await setDoc(doc(db, "Users", id), {
-      userName: User?.name,
-      userEmail: User?.email,
-      userPicture: User?.picture,
-      userNickname: User?.nickname,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPicture: user?.photoURL,
+      uid: user?.uid,
     });
   };
 
@@ -64,16 +63,15 @@ function CreateTrip({createTripPageRef}) {
   }, [user]);
 
   const SaveTrip = async (TripData) => {
-    const User = JSON.parse(localStorage.getItem("User"));
+    // const User = JSON.parse(localStorage.getItem("User"));
     const id = Date.now().toString();
     setIsLoading(true);
     await setDoc(doc(db, "Trips", id), {
       tripId: id,
       userSelection: formData,
       tripData: TripData,
-
-      userName: User?.name,
-      userEmail: User?.email,
+      userName: user?.displayName,
+      userEmail: user?.email,
     });
     setIsLoading(false);
     localStorage.setItem("Trip", JSON.stringify(TripData));

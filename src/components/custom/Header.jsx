@@ -10,20 +10,14 @@ import {
   DropdownMenuTrigger,
   DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu";
-import { LogInIcon, LogOutIcon, Plane, Plus, User } from "lucide-react";
+import { LogInIcon, LogOutIcon, Plane, Plus, User,MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../constants/ThemeToggle.jsx";
 
-function Header({headerRef}) {
-  const { user, isAuthenticated, logout, loginWithPopup } =
-    useContext(LogInContext);
-  const LogOut = () => {
-    logout();
-  };
-  const LogIn = () => {
-    console.log(import.meta.env.VITE_DOMAIN_NAME)
-    loginWithPopup();
-  };
+function Header({ headerRef }) {
+ 
+
+  const { user, isAuthenticated, handleSignOut,handleSignIn } = useContext(LogInContext);
 
   return (
     <div
@@ -41,17 +35,33 @@ function Header({headerRef}) {
         </div>
       </Link>
       <div className=" flex items-center justify-center gap-5">
+      {
+        isAuthenticated?(
+        //   <Link
+        //   to="/chat"
+        //   className="flex items-center gap-2 px-4 py-2 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+        // >
+        //   <MessageCircle className="h-5 w-5" /> Chat
+        // </Link>
+        <>{user.uid}</>
+        ):(
+          <></> 
+        )
+      }
+      
+      
+        
         <ThemeToggle className="" />
         {isAuthenticated ? (
           <DropdownMenu>
             <DropdownMenuTrigger className="">
               <div className="user flex items-center gap-2 mr-3">
                 <h2 className="hidden sm:block text-lg md:text-xl bg-gradient-to-b from-primary/90 to-primary/60 bg-clip-text text-transparent capitalize">
-                  Hi {user.given_name || user.nickname}
+                  Hi {user.displayName || user.email}
                 </h2>
                 <div className="userimg overflow-hidden h-10 w-10 rounded-full">
-                  {user.picture ? (
-                    <img src={user.picture} alt={user.name} />
+                  {user.photoURL ? (
+                    <img src={user.photoURL} alt={user.displayName} />
                   ) : (
                     <User />
                   )}
@@ -83,7 +93,7 @@ function Header({headerRef}) {
                 <Button
                   variant="destructive"
                   className="w-full text-center"
-                  onClick={LogOut}
+                  onClick={handleSignOut}
                 >
                   Log Out <LogOutIcon className="h-4" />
                 </Button>
@@ -91,7 +101,7 @@ function Header({headerRef}) {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Button onClick={LogIn}>
+          <Button onClick={handleSignIn}>
             Sign In{" "}
             <DropdownMenuShortcut>
               {" "}

@@ -8,6 +8,7 @@ import {
 import Header from "./components/custom/Header.jsx";
 import Hero from "./components/custom/Hero.jsx";
 import CreateTrip from "./components/routes/plan-a-trip/CreateTrip.jsx";
+import Chathome from "./components/routes/chats/Chathome.jsx";
 import Mytrips from "./components/routes/my-trips/[tripId]/Mytrips.jsx";
 import { useContext, useEffect, useRef, useState } from "react";
 import { LogInContext } from "./Context/LogInContext/Login.jsx";
@@ -35,7 +36,7 @@ function App() {
       setLoggedIn(true);
       toast.success("Logged In Successfully");
     }
-  }, [user]);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const timeline = gsap.timeline({ defaults: { ease: "elastic.out(1,1)" } });
@@ -105,6 +106,10 @@ function App() {
             <Route
               path="/plan-a-trip"
               element={<CreateTrip createTripPageRef={createTripPageRef} />}
+            />
+            <Route
+              path="/chat"
+              element={<Chathome/>}
             />
             <Route
               path="/my-trips/:tripId"

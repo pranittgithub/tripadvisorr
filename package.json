@@ -41,7 +41,8 @@
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "trip-planner": "file:"
+    "trip-planner": "file:",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.3.18",
