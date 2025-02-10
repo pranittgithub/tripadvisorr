@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="user">
         <img src={user.photoURL} alt="" />
         <span>{user.displayName}</span>
-        <button onClick={()=>signOut(auth)}>logout</button>
+        {/* <button onClick={()=>signOut(auth)}>logout</button> */}
       </div>
     </div>
   )
