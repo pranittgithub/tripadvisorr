@@ -9,7 +9,7 @@ import { LogInContext } from "./LogInContext/Login";
 export const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
-  const { currentUser } = useContext(LogInContext);
+  const { user } = useContext(LogInContext);
   const INITIAL_STATE = {
     chatId: "null",
     user: {},
@@ -21,9 +21,9 @@ export const ChatContextProvider = ({ children }) => {
         return {
           user: action.payload,
           chatId:
-            currentUser.uid > action.payload.uid
-              ? currentUser.uid + action.payload.uid
-              : action.payload.uid + currentUser.uid,
+            user.uid > action.payload.uid
+              ? user.uid + action.payload.uid
+              : action.payload.uid + user.uid,
         };
 
       default:
