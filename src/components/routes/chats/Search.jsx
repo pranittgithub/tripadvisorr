@@ -11,7 +11,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "../../../Service/firebase";
-import { LogInContext } from "../../../context/LogInContext/Login";
+import { LogInContext } from "../../../Context/LogInContext/Login";
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user1, setUser1] = useState(null);

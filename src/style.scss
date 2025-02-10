@@ -13,11 +13,20 @@
       @content;
     }
   }
+
+  :root {
+    --bg-color-light: white;
+    --bg-color-dark: #0a0a0a;
+  }
+  .dark .home {
+    background-color: var(--bg-color-dark);
+  }
+
   
   .home {
     // background-color: #a7bcff;
-    background-color:rgb(30, 30, 30);
-    height: 800px;
+ background-color: var(--bg-color-light);  
+   height: 650px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -213,7 +222,7 @@
   
         .input {
           height: 50px;
-          background-color: white;
+          background-color: whitesmoke;
           padding: 10px;
           display: flex;
           align-items: center;
@@ -225,6 +234,7 @@
             outline: none;
             color: #2f2d52;
             font-size: 18px;
+            background-color: whitesmoke;
   
             &::placeholder {
               color: lightgray;

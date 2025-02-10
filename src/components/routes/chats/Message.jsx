@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { LogInContext } from "../../../context/LogInContext/Login";
+import { LogInContext } from "../../../Context/LogInContext/Login";
 import { ChatContext } from "../../../Context/ChatContext";
 
 const Message = ({ message }) => {

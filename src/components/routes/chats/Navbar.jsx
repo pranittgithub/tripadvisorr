@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {signOut} from "firebase/auth"
 import { auth } from '../../../Service/firebase'
-import { LogInContext } from '../../../context/LogInContext/Login';
+import { LogInContext } from '../../../Context/LogInContext/Login';
 
 
 const Navbar = () => {
